@@ -120,7 +120,31 @@ minetest.register_craft({
 	recipe = "hemp:seed_hemp",
 })
 
-minetest.register_node("hemp:rope", {
+minetest.register_craftitem("hemp:hemp_fiber", {
+	description = "Hemp Fiber",
+	inventory_image = "hemp_hemp_fiber.png",
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "hemp:hemp_fiber",
+	recipe = {"hemp:hemp"},
+})
+
+minetest.register_craftitem("hemp:hemp_fabric", {
+	description = "Hemp Fabric",
+	inventory_image = "hemp_hemp_fabric.png",
+})
+
+minetest.register_craft({
+	output = "hemp:hemp_fabric",
+	recipe = {
+		{"hemp:hemp_fiber", "hemp:hemp_fiber"},
+		{"hemp:hemp_fiber", "hemp:hemp_fiber"},
+	}
+})
+
+minetest.register_node("hemp:hemp_rope", {
 	description = "Hemp Rope",
 	tiles = {"hemp_rope.png"},
 	walkable = false,
@@ -144,10 +168,46 @@ minetest.register_node("hemp:rope", {
 })
 
 minetest.register_craft({
-	output = "hemp:rope",
+	output = "hemp:hemp_rope",
 	recipe = {
-		{"hemp:hemp"},
-		{"hemp:hemp"},
-		{"hemp:hemp"},
+		{"hemp:hemp_fiber"},
+		{"hemp:hemp_fiber"},
+		{"hemp:hemp_fiber"},
 	}
+})
+
+minetest.register_node("hemp:hemp_rope_fence", {
+	description = "Hemp Rope Fence",
+	tiles = {"hemp_rope.png"},
+	inventory_image = "hemp_hemp_rope_fence.png",
+	wield_image = "hemp_hemp_rope_fence.png",
+	walkable = true,
+	climbable = false,
+	paramtype = "light",
+	groups = {snappy=3, fence=1},
+	drawtype = "nodebox",
+	node_box = {
+		type = "connected",
+		fixed = {-0.0625, -0.3125, -0.0625, 0.0625, 0.3125, 0.0625},
+		connect_front = {{-0.0625, 0.1875, -0.5, 0.0625, 0.3125, -0.0625}, {-0.0625, -0.3125, -0.5, 0.0625, -0.1875, -0.0625}},
+		connect_left = {{-0.5, 0.1875, -0.0625, -0.0625, 0.3125, 0.0625}, {-0.5, -0.3125, -0.0625, -0.0625, -0.1875, 0.0625}},
+		connect_back = {{-0.0625, 0.1875, 0.0625, 0.0625, 0.3125, 0.5}, {-0.0625, -0.3125, 0.0625, 0.0625, -0.1875, 0.5}},
+		connect_right = {{0.0625, 0.1875, -0.0625, 0.5, 0.3125, 0.0625}, {0.0625, -0.3125, -0.0625, 0.5, -0.1875, 0.0625}},
+	},
+	connects_to = {"group:fence", "group:wood", "group:tree", "group:stone"},
+})
+
+minetest.register_craft({
+	output = "hemp:hemp_rope_fence",
+	recipe = {
+		{"hemp:hemp_rope"},
+		{""},
+		{"hemp:hemp_rope"},
+	}
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "hemp:hemp_rope 2",
+	recipe = {"hemp:hemp_rope_fence"},
 })
