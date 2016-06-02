@@ -3,12 +3,12 @@ minetest.register_decoration({
 	place_on = {"default:dirt_with_grass"},
 	sidelen = 16,
 	noise_params = {
-		offset = -0.015,
+		offset = -0.02,
 		scale = 0.02,
-		spread = {x = 250, y = 250, z = 250},
+		spread = {x = 200, y = 200, z = 200},
 		seed = seed,
 		octaves = 3,
-		persist = 0.6
+		persist = 0.8
 	},
 	biomes = {"stone_grassland", "sandstone_grassland", "deciduous_forest", "coniferous_forest"},
 	y_min = 1,
