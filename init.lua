@@ -217,7 +217,7 @@ minetest.register_node("hemp:hemp_rope", {
 	climbable = true,
 	paramtype = "light",
 	paramtype2 = "wallmounted",
-	groups = {snappy=3},
+	groups = {snappy=3, flammable=3},
 	drawtype = "nodebox",
 	node_box = {
 		type = "wallmounted",
@@ -249,7 +249,7 @@ minetest.register_node("hemp:hemp_rope_ground", {
 	climbable = false,
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {snappy=3},
+	groups = {snappy=3, flammable=3},
 	drawtype = "nodebox",
 	node_box = {
 		type = "fixed",
@@ -281,7 +281,7 @@ minetest.register_node("hemp:hemp_rope_fence", {
 	walkable = true,
 	climbable = false,
 	paramtype = "light",
-	groups = {snappy=3, fence=1},
+	groups = {snappy=3, fence=1, flammable=3},
 	drawtype = "nodebox",
 	node_box = {
 		type = "connected",
@@ -307,4 +307,12 @@ minetest.register_craft({
 	type = "shapeless",
 	output = "hemp:hemp_rope 2",
 	recipe = {"hemp:hemp_rope_fence"},
+})
+
+minetest.register_node("hemp:hempcrete", {
+	description = "Hempcrete",
+	tiles = {"hemp_hempcrete.png"},
+	paramtype = "light",
+	groups = {crumbly=1, cracky=3},
+	drawtype = "normal",
 })
