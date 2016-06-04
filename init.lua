@@ -1,9 +1,92 @@
 -- index {
+--  rope function
 --  register the plant
 --  nodes
 --  craft items
 --  craft recipes
 -- }
+
+-- rope function
+local creative = minetest.setting_getbool("creative_mode")
+local place_rope = function(pos, itemstack)
+	if itemstack == nil and itemstack:get_count() <= 1 then
+		return
+	else
+		local maxNodes = itemstack:get_count();
+		if creative then
+			maxNodes = 100
+		end
+		local nSetNodes = 0;
+		local node = minetest.get_node(pos)
+		local param = node.param2
+
+		for i = 2, maxNodes do
+			pos.y = pos.y - 1
+			local nodeBelow = minetest.get_node(pos)
+			if nodeBelow ~= nil then
+				if nodeBelow.name == "air" then
+					minetest.set_node(pos, {name = "hemp:hemp_rope", param2 = param})
+					nSetNodes = nSetNodes + 1;
+				else
+					break
+				end
+			end
+		end
+		if not creative then
+			itemstack:set_count(maxNodes - nSetNodes);
+		end
+	end
+end
+
+local dig_rope = function(pos, digger)
+	if digger == nil and not digger:is_player() then
+		return
+	end
+
+	local nDugNodes = 0;
+	local maxNodes = 100;
+	local originalY = pos.y;
+
+	for i = 1, maxNodes do
+		pos.y = originalY + i;
+		local node = minetest.get_node(pos)
+		if node ~= nil then
+			if node.name == "hemp:hemp_rope" then
+				if not minetest.is_protected(pos, digger:get_player_name()) then
+					minetest.remove_node(pos)
+					nDugNodes = nDugNodes + 1
+				else
+					break
+				end
+			else
+				break
+			end
+		end
+	end
+	for i = -1, -maxNodes, -1 do
+		pos.y = originalY + i;
+		local node = minetest.get_node(pos)
+		if node ~= nil then
+			if node.name == "hemp:hemp_rope" then
+				if not minetest.is_protected(pos, digger:get_player_name()) then
+					minetest.remove_node(pos)
+					nDugNodes = nDugNodes + 1
+				else
+					break
+				end
+			else
+				break
+			end
+		end
+	end
+	local inventory = digger:get_inventory()
+	if inventory == nil then
+		return
+	end
+	if not creative then
+		inventory:add_item("main", "hemp:hemp_rope " .. nDugNodes)
+	end
+end
 
 -- register the plant
 minetest.register_decoration({
@@ -203,6 +286,26 @@ minetest.register_node("hemp:hemp_rope", {
 		wall_bottom = {-0.125, -0.5, -0.125, 0.125, 0.5, 0.125},
 		wall_side = {-0.5, -0.5, -0.125, -0.25, 0.5, 0.125},
 	},
+	after_place_node = function(pos, placer, itemstack, pointed_thing)
+		local under = pointed_thing.under
+		local above = pointed_thing.above
+		if under.y >= above.y then
+			place_rope(pos, itemstack);
+			return false;
+		else
+			local placer_pos = placer:getpos()
+			local dir = {
+				x = above.x - placer_pos.x,
+				y = above.y - placer_pos.y,
+				z = above.z - placer_pos.z
+			}
+			local param = minetest.dir_to_facedir(dir)
+			minetest.swap_node(pos, {name = "hemp:hemp_rope_ground", param2 = param})
+		end
+	end,
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
+		dig_rope(pos, digger)
+	end,
 })
 
 minetest.register_node("hemp:hemp_rope_ground", {
@@ -212,7 +315,7 @@ minetest.register_node("hemp:hemp_rope_ground", {
 	climbable = false,
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {snappy=3, flammable=3},
+	groups = {snappy=3, flammable=3, not_in_creative_inventory = 1},
 	drawtype = "nodebox",
 	node_box = {
 		type = "fixed",
@@ -222,6 +325,7 @@ minetest.register_node("hemp:hemp_rope_ground", {
 		type = "fixed",
 		fixed = {-0.125, -0.5, -0.5, 0.125, -0.3125, 0.5},
 	},
+	drop = "hemp:hemp_rope",
 })
 
 minetest.register_node("hemp:hemp_rope_fence", {
@@ -325,18 +429,6 @@ minetest.register_craft({
 	type = "shapeless",
 	output = "hemp:hemp_fiber 3",
 	recipe = {"hemp:hemp_rope"},
-})
-
-minetest.register_craft({
-	type = "shapeless",
-	output = "hemp:hemp_rope_ground",
-	recipe = {"hemp:hemp_rope"},
-})
-
-minetest.register_craft({
-	type = "shapeless",
-	output = "hemp:hemp_rope",
-	recipe = {"hemp:hemp_rope_ground"},
 })
 
 minetest.register_craft({
