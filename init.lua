@@ -386,6 +386,7 @@ minetest.register_craftitem("hemp:hemp_fiber", {
 minetest.register_craftitem("hemp:hemp_fabric", {
 	description = "Hemp Fabric",
 	inventory_image = "hemp_hemp_fabric.png",
+	groups = {wool = 1},
 })
 
 -- craft recipes
@@ -407,6 +408,13 @@ minetest.register_craft({
 	recipe = {
 		{"hemp:hemp_fiber", "hemp:hemp_fiber"},
 		{"hemp:hemp_fiber", "hemp:hemp_fiber"},
+	}
+})
+
+minetest.register_craft({
+	output = "default:paper 4",
+	recipe = {
+		{"hemp:hemp_fiber"},
 	}
 })
 
