@@ -286,6 +286,7 @@ minetest.register_node("hemp:hemp_rope", {
 		wall_bottom = {-0.125, -0.5, -0.125, 0.125, 0.5, 0.125},
 		wall_side = {-0.5, -0.5, -0.125, -0.25, 0.5, 0.125},
 	},
+	connect_sides = {"top", "bottom"},
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		local under = pointed_thing.under
 		local above = pointed_thing.above
@@ -348,7 +349,7 @@ minetest.register_node("hemp:hemp_rope_fence", {
 		connect_back = {{-0.0625, 0.1875, 0.0625, 0.0625, 0.3125, 0.5}, {-0.0625, -0.3125, 0.0625, 0.0625, -0.1875, 0.5}},
 		connect_right = {{0.0625, 0.1875, -0.0625, 0.5, 0.3125, 0.0625}, {0.0625, -0.3125, -0.0625, 0.5, -0.1875, 0.0625}},
 	},
-	connects_to = {"group:fence", "group:wood", "group:tree", "group:stone", "hemp:hempcrete"},
+	connects_to = {"group:fence", "group:wood", "group:tree", "group:stone", "hemp:hemp_rope", "hemp:hempcrete"},
 })
 
 minetest.register_node("hemp:hemp_rug", {
