@@ -1,3 +1,11 @@
+-- index {
+--  register the plant
+--  nodes
+--  craft items
+--  craft recipes
+-- }
+
+-- register the plant
 minetest.register_decoration({
 	deco_type = "simple",
 	place_on = {"default:dirt_with_grass"},
@@ -173,43 +181,7 @@ minetest.override_item("hemp:hemp_8", {
 		},
 })
 
-minetest.register_craftitem("hemp:cooked_seed_hemp", {
-	description = "cooked Hemp Seed",
-	inventory_image = "hemp_cooked_hemp_seed.png",
-	on_use = minetest.item_eat(4),
-})
-
-minetest.register_craft({
-	type = "cooking",
-	cooktime = 13,
-	output = "hemp:cooked_seed_hemp",
-	recipe = "hemp:seed_hemp",
-})
-
-minetest.register_craftitem("hemp:hemp_fiber", {
-	description = "Hemp Fiber",
-	inventory_image = "hemp_hemp_fiber.png",
-})
-
-minetest.register_craft({
-	type = "shapeless",
-	output = "hemp:hemp_fiber",
-	recipe = {"hemp:hemp"},
-})
-
-minetest.register_craftitem("hemp:hemp_fabric", {
-	description = "Hemp Fabric",
-	inventory_image = "hemp_hemp_fabric.png",
-})
-
-minetest.register_craft({
-	output = "hemp:hemp_fabric",
-	recipe = {
-		{"hemp:hemp_fiber", "hemp:hemp_fiber"},
-		{"hemp:hemp_fiber", "hemp:hemp_fiber"},
-	}
-})
-
+-- nodes
 minetest.register_node("hemp:hemp_rope", {
 	description = "Hemp Rope",
 	tiles = {"hemp_rope.png"},
@@ -233,15 +205,6 @@ minetest.register_node("hemp:hemp_rope", {
 	},
 })
 
-minetest.register_craft({
-	output = "hemp:hemp_rope",
-	recipe = {
-		{"hemp:hemp_fiber"},
-		{"hemp:hemp_fiber"},
-		{"hemp:hemp_fiber"},
-	}
-})
-
 minetest.register_node("hemp:hemp_rope_ground", {
 	description = "Hemp Rope ground",
 	tiles = {"hemp_rope.png"},
@@ -259,18 +222,6 @@ minetest.register_node("hemp:hemp_rope_ground", {
 		type = "fixed",
 		fixed = {-0.125, -0.5, -0.5, 0.125, -0.3125, 0.5},
 	},
-})
-
-minetest.register_craft({
-	type = "shapeless",
-	output = "hemp:hemp_rope_ground",
-	recipe = {"hemp:hemp_rope"},
-})
-
-minetest.register_craft({
-	type = "shapeless",
-	output = "hemp:hemp_rope",
-	recipe = {"hemp:hemp_rope_ground"},
 })
 
 minetest.register_node("hemp:hemp_rope_fence", {
@@ -294,6 +245,74 @@ minetest.register_node("hemp:hemp_rope_fence", {
 	connects_to = {"group:fence", "group:wood", "group:tree", "group:stone"},
 })
 
+minetest.register_node("hemp:hempcrete", {
+	description = "Hempcrete",
+	tiles = {"hemp_hempcrete.png"},
+	paramtype = "light",
+	groups = {crumbly=1, cracky=3},
+	drawtype = "normal",
+})
+
+-- craft items
+minetest.register_craftitem("hemp:cooked_seed_hemp", {
+	description = "cooked Hemp Seed",
+	inventory_image = "hemp_cooked_hemp_seed.png",
+	on_use = minetest.item_eat(4),
+})
+
+minetest.register_craftitem("hemp:hemp_fiber", {
+	description = "Hemp Fiber",
+	inventory_image = "hemp_hemp_fiber.png",
+})
+
+minetest.register_craftitem("hemp:hemp_fabric", {
+	description = "Hemp Fabric",
+	inventory_image = "hemp_hemp_fabric.png",
+})
+
+-- craft recipes
+minetest.register_craft({
+	type = "cooking",
+	cooktime = 13,
+	output = "hemp:cooked_seed_hemp",
+	recipe = "hemp:seed_hemp",
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "hemp:hemp_fiber",
+	recipe = {"hemp:hemp"},
+})
+
+minetest.register_craft({
+	output = "hemp:hemp_fabric",
+	recipe = {
+		{"hemp:hemp_fiber", "hemp:hemp_fiber"},
+		{"hemp:hemp_fiber", "hemp:hemp_fiber"},
+	}
+})
+
+minetest.register_craft({
+	output = "hemp:hemp_rope",
+	recipe = {
+		{"hemp:hemp_fiber"},
+		{"hemp:hemp_fiber"},
+		{"hemp:hemp_fiber"},
+	}
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "hemp:hemp_rope_ground",
+	recipe = {"hemp:hemp_rope"},
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "hemp:hemp_rope",
+	recipe = {"hemp:hemp_rope_ground"},
+})
+
 minetest.register_craft({
 	output = "hemp:hemp_rope_fence",
 	recipe = {
@@ -307,12 +326,4 @@ minetest.register_craft({
 	type = "shapeless",
 	output = "hemp:hemp_rope 2",
 	recipe = {"hemp:hemp_rope_fence"},
-})
-
-minetest.register_node("hemp:hempcrete", {
-	description = "Hempcrete",
-	tiles = {"hemp_hempcrete.png"},
-	paramtype = "light",
-	groups = {crumbly=1, cracky=3},
-	drawtype = "normal",
 })
