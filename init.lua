@@ -237,12 +237,26 @@ minetest.register_node("hemp:hemp_rope_fence", {
 	node_box = {
 		type = "connected",
 		fixed = {-0.0625, -0.3125, -0.0625, 0.0625, 0.3125, 0.0625},
+		connect_top = {-0.0625, 0.3125, -0.0625, 0.0625, 0.5, 0.0625},
+		connect_bottom = {-0.0625, -0.5, -0.0625, 0.0625, -0.3125, 0.0625},
 		connect_front = {{-0.0625, 0.1875, -0.5, 0.0625, 0.3125, -0.0625}, {-0.0625, -0.3125, -0.5, 0.0625, -0.1875, -0.0625}},
 		connect_left = {{-0.5, 0.1875, -0.0625, -0.0625, 0.3125, 0.0625}, {-0.5, -0.3125, -0.0625, -0.0625, -0.1875, 0.0625}},
 		connect_back = {{-0.0625, 0.1875, 0.0625, 0.0625, 0.3125, 0.5}, {-0.0625, -0.3125, 0.0625, 0.0625, -0.1875, 0.5}},
 		connect_right = {{0.0625, 0.1875, -0.0625, 0.5, 0.3125, 0.0625}, {0.0625, -0.3125, -0.0625, 0.5, -0.1875, 0.0625}},
 	},
-	connects_to = {"group:fence", "group:wood", "group:tree", "group:stone"},
+	connects_to = {"group:fence", "group:wood", "group:tree", "group:stone", "hemp:hempcrete"},
+})
+
+minetest.register_node("hemp:hemp_rug", {
+	description = "Hemp Rug",
+	tiles = {"hemp_rope.png"},
+	paramtype = "light",
+	groups = {snappy=3, flammable=3},
+	drawtype = "nodebox",
+	node_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, -0.4375, 0.5,},
+	},
 })
 
 minetest.register_node("hemp:hempcrete", {
@@ -293,12 +307,24 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	type = "shapeless",
+	output = "hemp:hemp_fiber 4",
+	recipe = {"hemp:hemp_fabric"},
+})
+
+minetest.register_craft({
 	output = "hemp:hemp_rope",
 	recipe = {
 		{"hemp:hemp_fiber"},
 		{"hemp:hemp_fiber"},
 		{"hemp:hemp_fiber"},
 	}
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "hemp:hemp_fiber 3",
+	recipe = {"hemp:hemp_rope"},
 })
 
 minetest.register_craft({
@@ -326,4 +352,26 @@ minetest.register_craft({
 	type = "shapeless",
 	output = "hemp:hemp_rope 2",
 	recipe = {"hemp:hemp_rope_fence"},
+})
+
+minetest.register_craft({
+	output = "hemp:hemp_rug",
+	recipe = {
+		{"hemp:hemp_fabric", "hemp:hemp_fabric", "hemp:hemp_fabric"},
+	}
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "hemp:hemp_fabric 3",
+	recipe = {"hemp:hemp_rug"},
+})
+
+minetest.register_craft({
+	output = "hemp:hempcrete",
+	recipe = {
+		{"hemp:hemp_fiber", "hemp:hemp_fiber", "hemp:hemp_fiber"},
+		{"hemp:hemp_fiber", "group:stone", "hemp:hemp_fiber"},
+		{"hemp:hemp_fiber", "hemp:hemp_fiber", "hemp:hemp_fiber"},
+	}
 })
