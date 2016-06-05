@@ -301,7 +301,12 @@ minetest.register_node("hemp:hemp_rope", {
 				z = above.z - placer_pos.z
 			}
 			local param = minetest.dir_to_facedir(dir)
-			minetest.swap_node(pos, {name = "hemp:hemp_rope_ground", param2 = param})
+			local above = minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z})
+			if above.name == "hemp:hemp_rope" then
+				minetest.swap_node(pos, {name = "hemp:hemp_rope_corner", param2 = param})
+			else
+				minetest.swap_node(pos, {name = "hemp:hemp_rope_ground", param2 = param})
+			end
 		end
 	end,
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
@@ -310,7 +315,7 @@ minetest.register_node("hemp:hemp_rope", {
 })
 
 minetest.register_node("hemp:hemp_rope_ground", {
-	description = "Hemp Rope ground",
+	description = "Hemp Rope",
 	tiles = {"hemp_rope.png"},
 	walkable = true,
 	climbable = false,
@@ -320,11 +325,41 @@ minetest.register_node("hemp:hemp_rope_ground", {
 	drawtype = "nodebox",
 	node_box = {
 		type = "fixed",
-		fixed = {-0.0625, -0.5, -0.5, 0.0625, -0.375, 0.5,},
+		fixed = {-0.0625, -0.5, -0.5, 0.0625, -0.375, 0.5},
 	},
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.125, -0.5, -0.5, 0.125, -0.3125, 0.5},
+	},
+	drop = "hemp:hemp_rope",
+})
+
+minetest.register_node("hemp:hemp_rope_corner", {
+	description = "Hemp Rope",
+	tiles = {"hemp_rope.png"},
+	walkable = true,
+	climbable = true,
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {snappy=3, flammable=3, not_in_creative_inventory = 1},
+	drawtype = "nodebox",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.0625, -0.5, -0.5, 0.0625, -0.375, 0.5},
+			{-0.0625, -0.375, 0.375, 0.0625, 0.5, 0.5},
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.125, -0.5, -0.5, 0.125, -0.3125, 0.5},
+			{-0.125, -0.3125, 0.3125, 0.125, 0.5, 0.5},
+		}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {-0.0625, -0.5, -0.5, 0.0625, -0.375, 0.5},
 	},
 	drop = "hemp:hemp_rope",
 })
@@ -356,7 +391,7 @@ minetest.register_node("hemp:hemp_rug", {
 	description = "Hemp Rug",
 	tiles = {"hemp_rope.png"},
 	paramtype = "light",
-	groups = {snappy=3, flammable=3},
+	groups = {snappy=3, flammable=3, falling_node = 1},
 	drawtype = "nodebox",
 	node_box = {
 		type = "fixed",
@@ -401,6 +436,13 @@ minetest.register_craft({
 	type = "shapeless",
 	output = "hemp:hemp_fiber",
 	recipe = {"hemp:hemp"},
+})
+
+minetest.register_craft({
+	output = "default:paper",
+	recipe = {
+		{"hemp:hemp_fiber", "hemp:hemp_fiber", "hemp:hemp_fiber"},
+	}
 })
 
 minetest.register_craft({
