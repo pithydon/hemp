@@ -1,4 +1,5 @@
 hemp by [pithydon]
+
 rope function stolen from [foot_on_teh_hill]
 
 Hemp for Minetest.
