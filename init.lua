@@ -402,7 +402,6 @@ minetest.register_node("hemp:hemp_rug", {
 minetest.register_node("hemp:hempcrete", {
 	description = "Hempcrete",
 	tiles = {"hemp_hempcrete.png"},
-	paramtype = "light",
 	groups = {crumbly=1, cracky=3},
 	drawtype = "normal",
 })
