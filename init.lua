@@ -4,6 +4,8 @@
 --  nodes
 --  craft items
 --  craft recipes
+--  mapgen
+--  legacy code
 -- }
 
 -- rope function
@@ -89,24 +91,6 @@ local dig_rope = function(pos, digger)
 end
 
 -- register the plant
-minetest.register_decoration({
-	deco_type = "simple",
-	place_on = {"default:dirt_with_grass"},
-	sidelen = 16,
-	noise_params = {
-		offset = -0.02,
-		scale = 0.02,
-		spread = {x = 200, y = 200, z = 200},
-		seed = seed,
-		octaves = 3,
-		persist = 0.8
-	},
-	biomes = {"stone_grassland", "sandstone_grassland", "deciduous_forest", "coniferous_forest"},
-	y_min = 1,
-	y_max = 31000,
-	decoration = "hemp:hemp_8",
-})
-
 farming.register_plant("hemp:hemp", {
 	description = "Hemp seed",
 	inventory_image = "hemp_hemp_seed.png",
@@ -122,8 +106,8 @@ minetest.override_item("hemp:hemp_1", {
 		type = "fixed",
 		fixed = {
 			{-0.0625, -0.5, -0.0625, 0.0625, -0.25, 0.0625},
-			{-0.125, -0.25, -0.125, 0.125, -0.25, 0.125},
-		},
+			{-0.125, -0.25, -0.125, 0.125, -0.25, 0.125}
+		}
 	},
 	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png"},
 	sunlight_propagates = true,
@@ -139,8 +123,8 @@ minetest.override_item("hemp:hemp_2", {
 		type = "fixed",
 		fixed = {
 			{-0.0625, -0.5, -0.0625, 0.0625, 0, 0.0625},
-			{-0.125, 0, -0.125, 0.125, 0, 0.125},
-		},
+			{-0.125, 0, -0.125, 0.125, 0, 0.125}
+		}
 	},
 	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png"},
 	sunlight_propagates = true,
@@ -157,8 +141,8 @@ minetest.override_item("hemp:hemp_3", {
 		fixed = {
 			{-0.0625, -0.5, -0.0625, 0.0625, 0.25, 0.0625},
 			{-0.5, 0, -0.5, 0.5, 0, 0.5},
-			{-0.125, 0.25, -0.125, 0.125, 0.25, 0.125},
-		},
+			{-0.125, 0.25, -0.125, 0.125, 0.25, 0.125}
+		}
 	},
 	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png"},
 	sunlight_propagates = true,
@@ -175,8 +159,8 @@ minetest.override_item("hemp:hemp_4", {
 		fixed = {
 			{-0.0625, -0.5, -0.0625, 0.0625, 0.5, 0.0625},
 			{-0.5, 0, -0.5, 0.5, 0, 0.5},
-			{-0.125, 0.5, -0.125, 0.125, 0.5, 0.125},
-		},
+			{-0.125, 0.5, -0.125, 0.125, 0.5, 0.125}
+		}
 	},
 	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png"},
 	sunlight_propagates = true,
@@ -194,8 +178,8 @@ minetest.override_item("hemp:hemp_5", {
 			{-0.0625, -0.5, -0.0625, 0.0625, 0.75, 0.0625},
 			{-0.5, 0, -0.5, 0.5, 0, 0.5},
 			{-0.5, 0.5, -0.5, 0.5, 0.5, 0.5},
-			{-0.125, 0.75, -0.125, 0.125, 0.75, 0.125},
-		},
+			{-0.125, 0.75, -0.125, 0.125, 0.75, 0.125}
+		}
 	},
 	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png"},
 	sunlight_propagates = true,
@@ -213,8 +197,8 @@ minetest.override_item("hemp:hemp_6", {
 			{-0.0625, -0.5, -0.0625, 0.0625, 1, 0.0625},
 			{-0.5, 0, -0.5, 0.5, 0, 0.5},
 			{-0.5, 0.5, -0.5, 0.5, 0.5, 0.5},
-			{-0.125, 1, -0.125, 0.125, 1, 0.125},
-		},
+			{-0.125, 1, -0.125, 0.125, 1, 0.125}
+		}
 	},
 	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png"},
 	sunlight_propagates = true,
@@ -233,15 +217,15 @@ minetest.override_item("hemp:hemp_7", {
 			{-0.5, 0, -0.5, 0.5, 0, 0.5},
 			{-0.5, 0.5, -0.5, 0.5, 0.5, 0.5},
 			{-0.5, 1, -0.5, 0.5, 1, 0.5},
-			{-0.125, 1.25, -0.125, 0.125, 1.25, 0.125},
-		},
+			{-0.125, 1.25, -0.125, 0.125, 1.25, 0.125}
+		}
 	},
 	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png"},
 	sunlight_propagates = true,
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.375, -0.5, -0.375, 0.375, 1.25, 0.375}
-		},
+		}
 })
 
 minetest.override_item("hemp:hemp_8", {
@@ -253,15 +237,15 @@ minetest.override_item("hemp:hemp_8", {
 			{-0.5, 0, -0.5, 0.5, 0, 0.5},
 			{-0.5, 0.5, -0.5, 0.5, 0.5, 0.5},
 			{-0.5, 1, -0.5, 0.5, 1, 0.5},
-			{-0.125, 1.5, -0.125, 0.125, 1.5, 0.125},
-		},
+			{-0.125, 1.5, -0.125, 0.125, 1.5, 0.125}
+		}
 	},
 	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png"},
 	sunlight_propagates = true,
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.375, -0.5, -0.375, 0.375, 1.5, 0.375}
-		},
+		}
 })
 
 -- nodes
@@ -272,19 +256,19 @@ minetest.register_node("hemp:hemp_rope", {
 	climbable = true,
 	paramtype = "light",
 	paramtype2 = "wallmounted",
-	groups = {snappy=3, flammable=3},
+	groups = {snappy = 3, flammable = 3},
 	drawtype = "nodebox",
 	node_box = {
 		type = "wallmounted",
 		wall_top = {-0.0625, -0.5, -0.0625, 0.0625, 0.5, 0.0625},
 		wall_bottom = {-0.0625, -0.5, -0.0625, 0.0625, 0.5, 0.0625},
-		wall_side = {-0.5, -0.5, -0.0625, -0.375, 0.5, 0.0625},
+		wall_side = {-0.5, -0.5, -0.0625, -0.375, 0.5, 0.0625}
 	},
 	selection_box = {
 		type = "wallmounted",
 		wall_top = {-0.125, -0.5, -0.125, 0.125, 0.5, 0.125},
 		wall_bottom = {-0.125, -0.5, -0.125, 0.125, 0.5, 0.125},
-		wall_side = {-0.5, -0.5, -0.125, -0.25, 0.5, 0.125},
+		wall_side = {-0.5, -0.5, -0.125, -0.25, 0.5, 0.125}
 	},
 	connect_sides = {"top", "bottom"},
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
@@ -301,7 +285,7 @@ minetest.register_node("hemp:hemp_rope", {
 				z = above.z - placer_pos.z
 			}
 			local param = minetest.dir_to_facedir(dir)
-			local above = minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z})
+			local above = minetest.get_node({x = pos.x, y = pos.y + 1, z = pos.z})
 			if above.name == "hemp:hemp_rope" then
 				minetest.swap_node(pos, {name = "hemp:hemp_rope_corner", param2 = param})
 			else
@@ -311,7 +295,7 @@ minetest.register_node("hemp:hemp_rope", {
 	end,
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		dig_rope(pos, digger)
-	end,
+	end
 })
 
 minetest.register_node("hemp:hemp_rope_ground", {
@@ -321,17 +305,17 @@ minetest.register_node("hemp:hemp_rope_ground", {
 	climbable = false,
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {snappy=3, flammable=3, not_in_creative_inventory = 1},
+	groups = {snappy = 3, flammable = 3, not_in_creative_inventory = 1},
 	drawtype = "nodebox",
 	node_box = {
 		type = "fixed",
-		fixed = {-0.0625, -0.5, -0.5, 0.0625, -0.375, 0.5},
+		fixed = {-0.0625, -0.5, -0.5, 0.0625, -0.375, 0.5}
 	},
 	selection_box = {
 		type = "fixed",
-		fixed = {-0.125, -0.5, -0.5, 0.125, -0.3125, 0.5},
+		fixed = {-0.125, -0.5, -0.5, 0.125, -0.3125, 0.5}
 	},
-	drop = "hemp:hemp_rope",
+	drop = "hemp:hemp_rope"
 })
 
 minetest.register_node("hemp:hemp_rope_corner", {
@@ -341,27 +325,27 @@ minetest.register_node("hemp:hemp_rope_corner", {
 	climbable = true,
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {snappy=3, flammable=3, not_in_creative_inventory = 1},
+	groups = {snappy = 3, flammable = 3, not_in_creative_inventory = 1},
 	drawtype = "nodebox",
 	node_box = {
 		type = "fixed",
 		fixed = {
 			{-0.0625, -0.5, -0.5, 0.0625, -0.375, 0.5},
-			{-0.0625, -0.375, 0.375, 0.0625, 0.5, 0.5},
+			{-0.0625, -0.375, 0.375, 0.0625, 0.5, 0.5}
 		}
 	},
 	selection_box = {
 		type = "fixed",
 		fixed = {
 			{-0.125, -0.5, -0.5, 0.125, -0.3125, 0.5},
-			{-0.125, -0.3125, 0.3125, 0.125, 0.5, 0.5},
+			{-0.125, -0.3125, 0.3125, 0.125, 0.5, 0.5}
 		}
 	},
 	collision_box = {
 		type = "fixed",
-		fixed = {-0.0625, -0.5, -0.5, 0.0625, -0.375, 0.5},
+		fixed = {-0.0625, -0.5, -0.5, 0.0625, -0.375, 0.5}
 	},
-	drop = "hemp:hemp_rope",
+	drop = "hemp:hemp_rope"
 })
 
 minetest.register_node("hemp:hemp_rope_fence", {
@@ -372,7 +356,7 @@ minetest.register_node("hemp:hemp_rope_fence", {
 	walkable = true,
 	climbable = false,
 	paramtype = "light",
-	groups = {snappy=3, fence=1, flammable=3},
+	groups = {snappy = 3, fence = 1, flammable = 3},
 	drawtype = "nodebox",
 	node_box = {
 		type = "connected",
@@ -382,45 +366,58 @@ minetest.register_node("hemp:hemp_rope_fence", {
 		connect_front = {{-0.0625, 0.1875, -0.5, 0.0625, 0.3125, -0.0625}, {-0.0625, -0.3125, -0.5, 0.0625, -0.1875, -0.0625}},
 		connect_left = {{-0.5, 0.1875, -0.0625, -0.0625, 0.3125, 0.0625}, {-0.5, -0.3125, -0.0625, -0.0625, -0.1875, 0.0625}},
 		connect_back = {{-0.0625, 0.1875, 0.0625, 0.0625, 0.3125, 0.5}, {-0.0625, -0.3125, 0.0625, 0.0625, -0.1875, 0.5}},
-		connect_right = {{0.0625, 0.1875, -0.0625, 0.5, 0.3125, 0.0625}, {0.0625, -0.3125, -0.0625, 0.5, -0.1875, 0.0625}},
+		connect_right = {{0.0625, 0.1875, -0.0625, 0.5, 0.3125, 0.0625}, {0.0625, -0.3125, -0.0625, 0.5, -0.1875, 0.0625}}
 	},
-	connects_to = {"group:fence", "group:wood", "group:tree", "group:stone", "hemp:hemp_rope", "hemp:hempcrete"},
+	connects_to = {"group:fence", "group:wood", "group:tree", "group:stone", "hemp:hemp_rope", "hemp:hempcrete"}
 })
 
 minetest.register_node("hemp:hemp_rug", {
 	description = "Hemp Rug",
 	tiles = {"hemp_rope.png"},
+	wield_image = "hemp_rope.png",
+	inventory_image = "hemp_rope.png",
 	paramtype = "light",
-	groups = {snappy=3, flammable=3, falling_node = 1},
+	paramtype2 = "wallmounted",
+	groups = {snappy = 3, flammable = 3, attached_node = 1},
 	drawtype = "nodebox",
 	node_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -0.4375, 0.5,},
+		type = "wallmounted",
+		wall_top = {-0.5, 0.4375, -0.5, 0.5, 0.5, 0.5},
+		wall_bottom = {-0.5, -0.5, -0.5, 0.5, -0.4375, 0.5},
+		wall_side = {-0.5, -0.5, -0.5, -0.4375, 0.5, 0.5}
 	},
+	-- on_place is used for compatibility with older version.
+	on_place = function(itemstack, placer, pointed_thing)
+		if pointed_thing.type ~= "node" or pointed_thing.under.y > pointed_thing.above.y then
+			return itemstack
+		else
+			return minetest.item_place(itemstack, placer, pointed_thing, param2)
+		end
+	end
 })
 
 minetest.register_node("hemp:hempcrete", {
 	description = "Hempcrete",
 	tiles = {"hemp_hempcrete.png"},
-	groups = {crumbly=1, cracky=3},
-	drawtype = "normal",
+	groups = {crumbly = 1, cracky = 3},
+	drawtype = "normal"
 })
 
 -- craft items
 minetest.register_craftitem("hemp:cooked_seed_hemp", {
 	description = "cooked Hemp Seed",
 	inventory_image = "hemp_cooked_hemp_seed.png",
-	on_use = minetest.item_eat(4),
+	on_use = minetest.item_eat(4)
 })
 
 minetest.register_craftitem("hemp:hemp_fiber", {
 	description = "Hemp Fiber",
-	inventory_image = "hemp_hemp_fiber.png",
+	inventory_image = "hemp_hemp_fiber.png"
 })
 
 minetest.register_craftitem("hemp:hemp_fabric", {
 	description = "Hemp Fabric",
-	inventory_image = "hemp_hemp_fabric.png",
+	inventory_image = "hemp_hemp_fabric.png"
 })
 
 -- craft recipes
@@ -428,19 +425,19 @@ minetest.register_craft({
 	type = "cooking",
 	cooktime = 13,
 	output = "hemp:cooked_seed_hemp",
-	recipe = "hemp:seed_hemp",
+	recipe = "hemp:seed_hemp"
 })
 
 minetest.register_craft({
 	type = "shapeless",
 	output = "hemp:hemp_fiber",
-	recipe = {"hemp:hemp"},
+	recipe = {"hemp:hemp"}
 })
 
 minetest.register_craft({
 	output = "default:paper",
 	recipe = {
-		{"hemp:hemp_fiber", "hemp:hemp_fiber", "hemp:hemp_fiber"},
+		{"hemp:hemp_fiber", "hemp:hemp_fiber", "hemp:hemp_fiber"}
 	}
 })
 
@@ -448,14 +445,14 @@ minetest.register_craft({
 	output = "hemp:hemp_fabric",
 	recipe = {
 		{"hemp:hemp_fiber", "hemp:hemp_fiber"},
-		{"hemp:hemp_fiber", "hemp:hemp_fiber"},
+		{"hemp:hemp_fiber", "hemp:hemp_fiber"}
 	}
 })
 
 minetest.register_craft({
 	type = "shapeless",
 	output = "hemp:hemp_fiber 4",
-	recipe = {"hemp:hemp_fabric"},
+	recipe = {"hemp:hemp_fabric"}
 })
 
 minetest.register_craft({
@@ -463,14 +460,14 @@ minetest.register_craft({
 	recipe = {
 		{"hemp:hemp_fiber"},
 		{"hemp:hemp_fiber"},
-		{"hemp:hemp_fiber"},
+		{"hemp:hemp_fiber"}
 	}
 })
 
 minetest.register_craft({
 	type = "shapeless",
 	output = "hemp:hemp_fiber 3",
-	recipe = {"hemp:hemp_rope"},
+	recipe = {"hemp:hemp_rope"}
 })
 
 minetest.register_craft({
@@ -478,27 +475,27 @@ minetest.register_craft({
 	recipe = {
 		{"hemp:hemp_rope"},
 		{""},
-		{"hemp:hemp_rope"},
+		{"hemp:hemp_rope"}
 	}
 })
 
 minetest.register_craft({
 	type = "shapeless",
 	output = "hemp:hemp_rope 2",
-	recipe = {"hemp:hemp_rope_fence"},
+	recipe = {"hemp:hemp_rope_fence"}
 })
 
 minetest.register_craft({
 	output = "hemp:hemp_rug",
 	recipe = {
-		{"hemp:hemp_fabric", "hemp:hemp_fabric", "hemp:hemp_fabric"},
+		{"hemp:hemp_fabric", "hemp:hemp_fabric", "hemp:hemp_fabric"}
 	}
 })
 
 minetest.register_craft({
 	type = "shapeless",
 	output = "hemp:hemp_fabric 3",
-	recipe = {"hemp:hemp_rug"},
+	recipe = {"hemp:hemp_rug"}
 })
 
 minetest.register_craft({
@@ -506,6 +503,42 @@ minetest.register_craft({
 	recipe = {
 		{"hemp:hemp_fiber", "hemp:hemp_fiber", "hemp:hemp_fiber"},
 		{"hemp:hemp_fiber", "group:stone", "hemp:hemp_fiber"},
-		{"hemp:hemp_fiber", "hemp:hemp_fiber", "hemp:hemp_fiber"},
+		{"hemp:hemp_fiber", "hemp:hemp_fiber", "hemp:hemp_fiber"}
 	}
+})
+
+-- mapgen
+if minetest.setting_getbool("enable_hemp_mapgen") ~= false then
+	local mg_params = minetest.get_mapgen_params()
+	if mg_params.mgname ~= "singlenode" then
+		minetest.register_decoration({
+			deco_type = "simple",
+			place_on = {"default:dirt_with_grass"},
+			sidelen = 16,
+			noise_params = {
+				offset = -0.02,
+				scale = 0.02,
+				spread = {x = 200, y = 200, z = 200},
+				seed = seed,
+				octaves = 3,
+				persist = 0.8
+			},
+			biomes = {"stone_grassland", "sandstone_grassland", "deciduous_forest", "coniferous_forest"},
+			y_min = 1,
+			y_max = 31000,
+			decoration = "hemp:hemp_8"
+		})
+	end
+end
+
+-- legacy code
+minetest.register_lbm({
+	name = "hemp:convert_hemp_rug_to_wallmounted",
+	nodenames = {"hemp:hemp_rug"},
+	run_at_every_load = true,
+	action = function(pos, node)
+		if node.param2 == 0 then
+			minetest.swap_node(pos, {name = node.name, param2 = 1})
+		end
+	end
 })

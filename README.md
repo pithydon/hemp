@@ -1,6 +1,6 @@
-hemp by [pithydon]
+hemp by pithydon (2016)
 
-rope function stolen from [foot_on_teh_hill]
+Rope function stolen from [foot_on_teh_hill].
 
 Hemp for Minetest.
 
@@ -9,36 +9,11 @@ Hemp plants are full grown at stage 8 or when they are 2 nodes tall.
 Seeds can be cooked for food or replanted.
 Leaves can be crafted into Hemp fiber, useful for ropes, rope fences, fabric, hemp fabric rugs, hempcrete, and paper.
 
-code license:
+Forum: https://forum.minetest.net/viewtopic.php?f=11&t=14588
 
-```txt
-This is free and unencumbered software released into the public domain.
+Github: https://github.com/pithydon/hemp
 
-Anyone is free to copy, modify, publish, use, compile, sell, or
-distribute this software, either in source code form or as a compiled
-binary, for any purpose, commercial or non-commercial, and by any
-means.
-
-In jurisdictions that recognize copyright laws, the author or authors
-of this software dedicate any and all copyright interest in the
-software to the public domain. We make this dedication for the benefit
-of the public at large and to the detriment of our heirs and
-successors. We intend this dedication to be an overt act of
-relinquishment in perpetuity of all present and future rights to this
-software under copyright law.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-```
-
-For more information, please refer to <http://unlicense.org>
-
-texture license:
+License for all of this mod is "CC0", see below.
 
 ```txt
 CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED HEREUNDER.
@@ -69,5 +44,4 @@ For these and/or other purposes and motivations, and without any expectation of 
 
 ```
 
-[pithydon]: <https://github.com/pithydon>
 [foot_on_teh_hill]: <https://github.com/foot-on-teh-hill>
