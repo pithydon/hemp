@@ -5,6 +5,7 @@
 --  craft items
 --  craft recipes
 --  mapgen
+--  TRM
 --  legacy code
 -- }
 
@@ -529,6 +530,18 @@ if minetest.setting_getbool("enable_hemp_mapgen") ~= false then
 			decoration = "hemp:hemp_8"
 		})
 	end
+end
+
+-- TRM
+if minetest.get_modpath("treasurer") then
+	treasurer.register_treasure("hemp:seed_hemp",0.006,3,{1,4},nil,"seed")
+	treasurer.register_treasure("hemp:hemp_rope",0.02,3,{1,16})
+	treasurer.register_treasure("hemp:hemp_rope_fence",0.02,3,{1,7},nil,"building_block")
+	treasurer.register_treasure("hemp:hemp_rug",0.01,3,{1,6},nil,"deco")
+	treasurer.register_treasure("hemp:hempcrete",0.01,4,{1,4},nil,"building_block")
+	treasurer.register_treasure("hemp:cooked_seed_hemp",0.006,2,{1,3},nil,"food")
+	treasurer.register_treasure("hemp:hemp_fiber",0.05,2,{1,16},nil,"crafting_component")
+	treasurer.register_treasure("hemp:hemp_fabric",0.05,2,{1,4},nil,"crafting_component")
 end
 
 -- legacy code
