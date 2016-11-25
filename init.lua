@@ -534,6 +534,7 @@ end
 
 -- TRM
 if minetest.get_modpath("treasurer") then
+	treasurer.register_treasure("hemp:hemp",0.03,2,{1,8},nil,"crafting_component")
 	treasurer.register_treasure("hemp:seed_hemp",0.006,3,{1,4},nil,"seed")
 	treasurer.register_treasure("hemp:hemp_rope",0.02,3,{1,16})
 	treasurer.register_treasure("hemp:hemp_rope_fence",0.02,3,{1,7},nil,"building_block")
