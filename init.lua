@@ -110,7 +110,7 @@ minetest.override_item("hemp:hemp_1", {
 			{-0.125, -0.25, -0.125, 0.125, -0.25, 0.125}
 		}
 	},
-	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png"},
+	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png"},
 	sunlight_propagates = true,
 	selection_box = {
 		type = "fixed",
@@ -127,7 +127,7 @@ minetest.override_item("hemp:hemp_2", {
 			{-0.125, 0, -0.125, 0.125, 0, 0.125}
 		}
 	},
-	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png"},
+	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png"},
 	sunlight_propagates = true,
 	selection_box = {
 		type = "fixed",
@@ -145,7 +145,7 @@ minetest.override_item("hemp:hemp_3", {
 			{-0.125, 0.25, -0.125, 0.125, 0.25, 0.125}
 		}
 	},
-	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png"},
+	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png"},
 	sunlight_propagates = true,
 	selection_box = {
 		type = "fixed",
@@ -163,7 +163,7 @@ minetest.override_item("hemp:hemp_4", {
 			{-0.125, 0.5, -0.125, 0.125, 0.5, 0.125}
 		}
 	},
-	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png"},
+	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png"},
 	sunlight_propagates = true,
 	selection_box = {
 		type = "fixed",
@@ -182,7 +182,7 @@ minetest.override_item("hemp:hemp_5", {
 			{-0.125, 0.75, -0.125, 0.125, 0.75, 0.125}
 		}
 	},
-	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png"},
+	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png"},
 	sunlight_propagates = true,
 	selection_box = {
 		type = "fixed",
@@ -201,7 +201,7 @@ minetest.override_item("hemp:hemp_6", {
 			{-0.125, 1, -0.125, 0.125, 1, 0.125}
 		}
 	},
-	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png"},
+	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png"},
 	sunlight_propagates = true,
 	selection_box = {
 		type = "fixed",
@@ -221,7 +221,7 @@ minetest.override_item("hemp:hemp_7", {
 			{-0.125, 1.25, -0.125, 0.125, 1.25, 0.125}
 		}
 	},
-	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png"},
+	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png"},
 	sunlight_propagates = true,
 	selection_box = {
 		type = "fixed",
@@ -241,7 +241,7 @@ minetest.override_item("hemp:hemp_8", {
 			{-0.125, 1.5, -0.125, 0.125, 1.5, 0.125}
 		}
 	},
-	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png", "hemp_hemp_stalk.png"},
+	tiles = {"hemp_hemp_leaves.png", "hemp_hemp_leaves.png", "hemp_hemp_stalk.png"},
 	sunlight_propagates = true,
 	selection_box = {
 		type = "fixed",
@@ -403,6 +403,53 @@ minetest.register_node("hemp:hempcrete", {
 	groups = {crumbly = 1, cracky = 3},
 	drawtype = "normal"
 })
+
+if minetest.get_modpath("flowerpots") then
+	minetest.register_node("hemp:flowerpot_hemp", {
+		description = "hemp in a pot.",
+		tiles = {{name = "hemp_hemp_leaves.png", backface_culling = true}, {name = "hemp_hemp_stalk.png", backface_culling = true},
+				{name = "flowerpots_pot.png", backface_culling = true}, {name = "default_dirt.png", backface_culling = true}},
+		paramtype = "light",
+		paramtype2 = "facedir",
+		drawtype = "mesh",
+		mesh = "hemp_flowerpot.obj",
+		collision_box = {
+			type = "fixed",
+			fixed = {
+				{-0.1875, -0.5, -0.1875, 0.1875, -0.1875, 0.1875},
+				{-0.1875, -0.3125, 0.1875, 0.25, -0.125, 0.25},
+				{-0.25, -0.3125, -0.1875, -0.1875, -0.125, 0.25},
+				{-0.25, -0.3125, -0.25, 0.1875, -0.125, -0.1875},
+				{0.1875, -0.3125, -0.25, 0.25, -0.125, 0.1875}
+			}
+		},
+		selection_box = {
+			type = "fixed",
+			fixed = {
+				{-0.1875, -0.5, -0.1875, 0.1875, -0.3125, 0.1875},
+				{-0.25, -0.3125, -0.25, 0.25, 0.5, 0.25}
+			}
+		},
+		groups = {dig_immediate = 2, not_in_creative_inventory = 1},
+		on_punch = flowerpots.take_plant("hemp:seed_hemp")
+	})
+
+	flowerpots.plants["hemp:seed_hemp"] = "hemp:flowerpot_hemp"
+
+	local flowerpot_def = minetest.registered_nodes["flowerpots:pot"]
+	local hempseed_def = table.copy(minetest.registered_items["hemp:seed_hemp"])
+	minetest.override_item("hemp:seed_hemp", {
+		on_place = function(itemstack, placer, pointed_thing)
+			local pos = pointed_thing.under
+			local node = minetest.get_node(pos)
+			if node.name == "flowerpots:pot" then
+				flowerpot_def.on_rightclick(pos, node, placer, itemstack, pointed_thing)
+			else
+				hempseed_def.on_place(itemstack, placer, pointed_thing)
+			end
+		end
+	})
+end
 
 -- craft items
 minetest.register_craftitem("hemp:cooked_seed_hemp", {
