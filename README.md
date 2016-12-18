@@ -1,4 +1,4 @@
-hemp v1.0 by pithydon (2016)
+hemp v1.0_git
 
 Rope function stolen from [foot_on_teh_hill].
 
@@ -8,10 +8,6 @@ Hemp plants can be found in biomes stone grassland, sandstone grassland, deciduo
 Hemp plants are full grown at stage 8 or when they are 2 nodes tall.
 Seeds can be cooked for food or replanted.
 Leaves can be crafted into Hemp fiber, useful for ropes, rope fences, fabric, hemp fabric rugs, hempcrete, and paper.
-
-Forum: https://forum.minetest.net/viewtopic.php?t=14588
-
-Github: https://github.com/pithydon/hemp
 
 License for all of this mod is "CC0", see below.
 

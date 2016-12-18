@@ -6,7 +6,6 @@
 --  craft recipes
 --  mapgen
 --  TRM
---  legacy code
 -- }
 
 -- rope function
@@ -386,22 +385,23 @@ minetest.register_node("hemp:hemp_rug", {
 		wall_top = {-0.5, 0.4375, -0.5, 0.5, 0.5, 0.5},
 		wall_bottom = {-0.5, -0.5, -0.5, 0.5, -0.4375, 0.5},
 		wall_side = {-0.5, -0.5, -0.5, -0.4375, 0.5, 0.5}
-	},
-	-- on_place is used for compatibility with older version.
-	on_place = function(itemstack, placer, pointed_thing)
-		if pointed_thing.type ~= "node" or pointed_thing.under.y > pointed_thing.above.y then
-			return itemstack
-		else
-			return minetest.item_place(itemstack, placer, pointed_thing, param2)
-		end
-	end
+	}
 })
 
 minetest.register_node("hemp:hempcrete", {
 	description = "Hempcrete",
 	tiles = {"hemp_hempcrete.png"},
 	groups = {crumbly = 1, cracky = 3},
-	drawtype = "normal"
+	drawtype = "normal",
+	sound = default.node_sound_stone_defaults()
+})
+
+minetest.register_node("hemp:hempcrete_brick", {
+	description = "Hempcrete Brick",
+	tiles = {"hemp_hempcrete_brick.png"},
+	groups = {crumbly = 1, cracky = 3},
+	drawtype = "normal",
+	sound = default.node_sound_stone_defaults()
 })
 
 if minetest.get_modpath("flowerpots") then
@@ -430,25 +430,13 @@ if minetest.get_modpath("flowerpots") then
 				{-0.25, -0.3125, -0.25, 0.25, 0.5, 0.25}
 			}
 		},
-		groups = {dig_immediate = 2, not_in_creative_inventory = 1},
+		groups = {snappy = 3, cracky = 3, oddly_breakable_by_hand = 3, not_in_creative_inventory = 1},
 		on_punch = flowerpots.take_plant("hemp:seed_hemp")
 	})
 
 	flowerpots.plants["hemp:seed_hemp"] = "hemp:flowerpot_hemp"
 
-	local flowerpot_def = minetest.registered_nodes["flowerpots:pot"]
-	local hempseed_def = table.copy(minetest.registered_items["hemp:seed_hemp"])
-	minetest.override_item("hemp:seed_hemp", {
-		on_place = function(itemstack, placer, pointed_thing)
-			local pos = pointed_thing.under
-			local node = minetest.get_node(pos)
-			if node.name == "flowerpots:pot" then
-				flowerpot_def.on_rightclick(pos, node, placer, itemstack, pointed_thing)
-			else
-				hempseed_def.on_place(itemstack, placer, pointed_thing)
-			end
-		end
-	})
+	flowerpots.override_on_place("hemp:seed_hemp")
 end
 
 -- craft items
@@ -555,6 +543,14 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = "hemp:hempcrete_brick 4",
+	recipe = {
+		{"hemp:hempcrete", "hemp:hempcrete"},
+		{"hemp:hempcrete", "hemp:hempcrete"}
+	}
+})
+
 -- mapgen
 if minetest.setting_getbool("enable_hemp_mapgen") ~= false then
 	local mg_params = minetest.get_mapgen_params()
@@ -587,19 +583,8 @@ if minetest.get_modpath("treasurer") then
 	treasurer.register_treasure("hemp:hemp_rope_fence",0.02,3,{1,7},nil,"building_block")
 	treasurer.register_treasure("hemp:hemp_rug",0.01,3,{1,6},nil,"deco")
 	treasurer.register_treasure("hemp:hempcrete",0.01,4,{1,4},nil,"building_block")
+	treasurer.register_treasure("hemp:hempcrete_brick",0.01,4,{1,4},nil,"building_block")
 	treasurer.register_treasure("hemp:cooked_seed_hemp",0.006,2,{1,3},nil,"food")
 	treasurer.register_treasure("hemp:hemp_fiber",0.05,2,{1,16},nil,"crafting_component")
 	treasurer.register_treasure("hemp:hemp_fabric",0.05,2,{1,4},nil,"crafting_component")
 end
-
--- legacy code
-minetest.register_lbm({
-	name = "hemp:convert_hemp_rug_to_wallmounted",
-	nodenames = {"hemp:hemp_rug"},
-	run_at_every_load = true,
-	action = function(pos, node)
-		if node.param2 == 0 then
-			minetest.swap_node(pos, {name = node.name, param2 = 1})
-		end
-	end
-})
