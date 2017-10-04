@@ -551,6 +551,40 @@ minetest.register_craft({
 	}
 })
 
+-- Fuel recipes
+
+local fiber_burn_time = 2
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "hemp:hemp_fiber",
+	burntime = fiber_burn_time,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "hemp:hemp_fabric",
+	burntime = fiber_burn_time * 4,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "hemp:hemp_rope",
+	burntime = fiber_burn_time * 3,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "hemp:hemp_rope_fence",
+	burntime = fiber_burn_time * 6,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "hemp:hemp_rug",
+	burntime = fiber_burn_time * 12,
+})
+
 -- mapgen
 if minetest.setting_getbool("enable_hemp_mapgen") ~= false then
 	local mg_params = minetest.get_mapgen_params()
