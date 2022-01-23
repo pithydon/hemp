@@ -1,4 +1,4 @@
-hemp v1.0_git
+hemp
 
 Rope function stolen from [foot_on_teh_hill].
 
